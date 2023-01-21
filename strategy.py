@@ -1,4 +1,5 @@
 import talib
+import pandas as pd
 
 def Data(df):
     df['RSI1'] = talib.RSI(df['close'], timeperiod=13)
