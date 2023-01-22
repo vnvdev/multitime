@@ -34,7 +34,7 @@ for row in df.itertuples():
         h1 = Data(df[:row.id].resample("1h", offset=0).apply(ohlc).dropna())
         h4 = Data(df[:row.id].resample("4h", offset=0).apply(ohlc).dropna()) 
         d1 = Data(df[:row.id].resample("d", offset=0).apply(ohlc).dropna()) 
-        w1 = Week(df[:row.id].resample("w", offset=0).apply(ohlc).dropna())
+        w1 = Data(df[:row.id].resample("w", offset=0).apply(ohlc).dropna())
         if (all(w1.iloc[-1][col] > 80 for col in ['RSI1', 'RSI2', 'RSI3', 'RSI4', 'RSI5'])
             and all(h1.iloc[-1][col] > 80 for col in ['RSI1', 'RSI2', 'RSI3', 'RSI4', 'RSI5'])
             and all(h4.iloc[-1][col] > 80 for col in ['RSI1', 'RSI2', 'RSI3', 'RSI4', 'RSI5'])
