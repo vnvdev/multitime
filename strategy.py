@@ -23,18 +23,14 @@ ohlc = {
     'close': 'last'
 }
 
-signal = [0]*len(df)
-
-for i in range(100000, len(df):
+rsi1 = [0]*len(df)
+rsi2 = [0]*len(df)
+for i in range(100000, len(df)):
     h1 = Data(df[:i].resample("1h", offset=0).apply(ohlc).dropna())
-    h4 = Data(df[:i].resample("4h", offset=0).apply(ohlc).dropna()) 
-    if (all(h1.iloc[-1][col] > 80 for col in ['RSI1', 'RSI2'])
-        and all(h4.iloc[-1][col] > 80 for col in ['RSI1', 'RSI2'])):
-            signal[i] = 1
-    elif (all(h1.iloc[-1][col] < 20 for col in ['RSI1', 'RSI2'])
-        and all(h4.iloc[-1][col] < 20 for col in ['RSI1', 'RSI2'])):
-            signal[i] = 2
+    rsi1[i] = h1.iloc[-1]['RSI1'] 
+    rsi2[i] = h1.iloc[-1]['RSI2'] 
 
-df['signal'] = signal
+df['RSI1_h1'] = rsi1
+df['RSI2_h1'] = rsi2
 df = df.reset_index()
 df.to_csv("data.csv", index = False)
