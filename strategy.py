@@ -19,7 +19,6 @@ for i in range(0, len(df)):
         break
 
 df = df.set_index('time')
-df['id'] = np.arange(1, len(df) + 1)
 ohlc = {
     'open': 'first',
     'high': 'max',
